@@ -20,6 +20,14 @@ public class Inscricao {
     private String operador;
 
     public Inscricao() {
+        this.id = 0;
+        this.idPessoas = 0;
+        this.idStatusInteresses = 0;
+        this.idEventos = 0;
+        this.dataCriacao = "";
+        this.dataAlteracao = "";
+        this.inativo = 0;
+        this.operador = "";
     }
 
     public Inscricao(int id, int idPessoas, int idStatusInteresses, int idEventos, String dataCriacao, String dataAlteracao, int inativo, String operador) {
