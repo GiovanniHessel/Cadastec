@@ -22,14 +22,6 @@ public class Pessoa {
     private int idContatos;
     private int idEmails;
     private int idSites;
-    private int idNacionalidades;
-    private int idEtinias;
-    private int idOpcoesSexuais;
-    private int idAreasProfissionais;
-    private int idEstadosCivis;
-    private int idEscolaridades;
-    private String dataCriacao;
-    private String dataAlteracao;
     private int inativo;
     private String operador;
 
@@ -46,19 +38,11 @@ public class Pessoa {
         this.idContatos = 0;
         this.idEmails = 0;
         this.idSites = 0;
-        this.idNacionalidades = 0;
-        this.idEtinias = 0;
-        this.idOpcoesSexuais = 0;
-        this.idAreasProfissionais = 0;
-        this.idEstadosCivis = 0;
-        this.idEscolaridades = 0;
-        this.dataCriacao = "";
-        this.dataAlteracao = "";
         this.inativo = 0;
         this.operador = "";
     }
 
-    public Pessoa(int id, String nome, String sobrenome, String cpf, String documento, int idTiposDeDocumentos, String sexo, String dataDeNascimento, int idEnderecos, int idContatos, int idEmails, int idSites, int idNacionalidades, int idEtinias, int idOpcoesSexuais, int idAreasProfissionais, int idEstadosCivis, int idEscolaridades, String dataCriacao, String dataAlteracao, int inativo, String operador) {
+    public Pessoa(int id, String nome, String sobrenome, String cpf, String documento, int idTiposDeDocumentos, String sexo, String dataDeNascimento, int idEnderecos, int idContatos, int idEmails, int idSites, int inativo, String operador) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -71,19 +55,9 @@ public class Pessoa {
         this.idContatos = idContatos;
         this.idEmails = idEmails;
         this.idSites = idSites;
-        this.idNacionalidades = idNacionalidades;
-        this.idEtinias = idEtinias;
-        this.idOpcoesSexuais = idOpcoesSexuais;
-        this.idAreasProfissionais = idAreasProfissionais;
-        this.idEstadosCivis = idEstadosCivis;
-        this.idEscolaridades = idEscolaridades;
-        this.dataCriacao = dataCriacao;
-        this.dataAlteracao = dataAlteracao;
         this.inativo = inativo;
         this.operador = operador;
     }
-    
-    
 
     public int getId() {
         return id;
@@ -181,70 +155,6 @@ public class Pessoa {
         this.idSites = idSites;
     }
 
-    public int getIdNacionalidades() {
-        return idNacionalidades;
-    }
-
-    public void setIdNacionalidades(int idNacionalidades) {
-        this.idNacionalidades = idNacionalidades;
-    }
-
-    public int getIdEtinias() {
-        return idEtinias;
-    }
-
-    public void setIdEtinias(int idEtinias) {
-        this.idEtinias = idEtinias;
-    }
-
-    public int getIdOpcoesSexuais() {
-        return idOpcoesSexuais;
-    }
-
-    public void setIdOpcoesSexuais(int idOpcoesSexuais) {
-        this.idOpcoesSexuais = idOpcoesSexuais;
-    }
-
-    public int getIdAreasProfissionais() {
-        return idAreasProfissionais;
-    }
-
-    public void setIdAreasProfissionais(int idAreasProfissionais) {
-        this.idAreasProfissionais = idAreasProfissionais;
-    }
-
-    public int getIdEstadosCivis() {
-        return idEstadosCivis;
-    }
-
-    public void setIdEstadosCivis(int idEstadosCivis) {
-        this.idEstadosCivis = idEstadosCivis;
-    }
-
-    public int getIdEscolaridades() {
-        return idEscolaridades;
-    }
-
-    public void setIdEscolaridades(int idEscolaridades) {
-        this.idEscolaridades = idEscolaridades;
-    }
-
-    public String getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(String dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public String getDataAlteracao() {
-        return dataAlteracao;
-    }
-
-    public void setDataAlteracao(String dataAlteracao) {
-        this.dataAlteracao = dataAlteracao;
-    }
-
     public int getInativo() {
         return inativo;
     }
@@ -260,6 +170,6 @@ public class Pessoa {
     public void setOperador(String operador) {
         this.operador = operador;
     }
-    
+
     
 }
