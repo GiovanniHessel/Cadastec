@@ -12,35 +12,18 @@ package br.com.sp.pi6.cadastec.model.entidade;
 public class StatusInteresse {
     private int id;
     private String statusInteresse;
-    private String dataCriacao;
-    private String dataAlteracao;
     private int inativo;
-    private String operador;
 
     public StatusInteresse() {
         this.id = 0;
         this.statusInteresse = "";
-        this.dataCriacao = "";
-        this.dataAlteracao = "";
         this.inativo = 0;
-        this.operador = "";
     }
 
-    public StatusInteresse(int id, String statusInteresse, String dataCriacao, String dataAlteracao, int inativo, String operador) {
+    public StatusInteresse(int id, String statusInteresse, int inativo) {
         this.id = id;
         this.statusInteresse = statusInteresse;
-        this.dataCriacao = dataCriacao;
-        this.dataAlteracao = dataAlteracao;
         this.inativo = inativo;
-        this.operador = operador;
-    }
-
-    public String getOperador() {
-        return operador;
-    }
-
-    public void setOperador(String operador) {
-        this.operador = operador;
     }
 
     public int getId() {
@@ -59,22 +42,6 @@ public class StatusInteresse {
         this.statusInteresse = statusInteresse;
     }
 
-    public String getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(String dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public String getDataAlteracao() {
-        return dataAlteracao;
-    }
-
-    public void setDataAlteracao(String dataAlteracao) {
-        this.dataAlteracao = dataAlteracao;
-    }
-
     public int getInativo() {
         return inativo;
     }
@@ -82,6 +49,7 @@ public class StatusInteresse {
     public void setInativo(int inativo) {
         this.inativo = inativo;
     }
+    
     
     
 }

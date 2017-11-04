@@ -18,10 +18,7 @@ public class Endereco {
     private int idCidades;
     private int idEstados;
     private int idPais;
-    private String dataCriacao;
-    private String dataAlteracao;
     private int inativo;
-    private String operador;
 
     public Endereco() {
         this.id = 0;
@@ -32,13 +29,10 @@ public class Endereco {
         this.idCidades = 0;
         this.idEstados = 0;
         this.idPais = 0;
-        this.dataCriacao = "";
-        this.dataAlteracao = "";
         this.inativo = 0;
-        this.operador = "";
     }
 
-    public Endereco(int id, String logradouro, String numero, String complemento, String bairro, int idCidades, int idEstados, int idPais, String dataCriacao, String dataAlteracao, int inativo, String operador) {
+    public Endereco(int id, String logradouro, String numero, String complemento, String bairro, int idCidades, int idEstados, int idPais, int inativo) {
         this.id = id;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -47,10 +41,7 @@ public class Endereco {
         this.idCidades = idCidades;
         this.idEstados = idEstados;
         this.idPais = idPais;
-        this.dataCriacao = dataCriacao;
-        this.dataAlteracao = dataAlteracao;
         this.inativo = inativo;
-        this.operador = operador;
     }
 
     public int getId() {
@@ -117,22 +108,6 @@ public class Endereco {
         this.idPais = idPais;
     }
 
-    public String getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(String dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public String getDataAlteracao() {
-        return dataAlteracao;
-    }
-
-    public void setDataAlteracao(String dataAlteracao) {
-        this.dataAlteracao = dataAlteracao;
-    }
-
     public int getInativo() {
         return inativo;
     }
@@ -140,14 +115,7 @@ public class Endereco {
     public void setInativo(int inativo) {
         this.inativo = inativo;
     }
-
-    public String getOperador() {
-        return operador;
-    }
-
-    public void setOperador(String operador) {
-        this.operador = operador;
-    }
+    
     
     
 }

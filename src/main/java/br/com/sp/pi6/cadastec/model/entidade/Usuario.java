@@ -13,26 +13,23 @@ public class Usuario {
     private int id;
     private String usuario;
     private String chave;
-    private int online; 
     private int inativo;
     private String acesso;
-
-    public Usuario(int id, String usuario, String chave, int online, int inativo, String acesso) {
-        this.id = id;
-        this.usuario = usuario;
-        this.chave = chave;
-        this.online = online;
-        this.inativo = inativo;
-        this.acesso = acesso;
-    }
 
     public Usuario() {
         this.id = 0;
         this.usuario = "";
         this.chave = "";
-        this.online = 0;
         this.inativo = 0;
         this.acesso = "";
+    }
+
+    public Usuario(int id, String usuario, String chave, int inativo, String acesso) {
+        this.id = id;
+        this.usuario = usuario;
+        this.chave = chave;
+        this.inativo = inativo;
+        this.acesso = acesso;
     }
 
     public int getId() {
@@ -59,14 +56,6 @@ public class Usuario {
         this.chave = chave;
     }
 
-    public int getOnline() {
-        return online;
-    }
-
-    public void setOnline(int online) {
-        this.online = online;
-    }
-
     public int getInativo() {
         return inativo;
     }
@@ -82,7 +71,7 @@ public class Usuario {
     public void setAcesso(String acesso) {
         this.acesso = acesso;
     }
-    
+
     
     
     

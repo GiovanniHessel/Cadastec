@@ -12,33 +12,27 @@ package br.com.sp.pi6.cadastec.model.entidade;
 public class Cidade {
     private int id;
     private String cidade;
+    private String sigla;    
     private int idEstados;
     private int idPais;
-    private String dataCriacao;
-    private String dataAlteracao;
     private int inativo;
-    private String operador;
 
     public Cidade() {
         this.id = 0;
         this.cidade = "";
+        this.sigla = "";
         this.idEstados = 0;
         this.idPais = 0;
-        this.dataCriacao = "";
-        this.dataAlteracao = "";
         this.inativo = 0;
-        this.operador = "";
     }
 
-    public Cidade(int id, String cidade, int idEstados, int idPais, String dataCriacao, String dataAlteracao, int inativo, String operador) {
+    public Cidade(int id, String cidade, String sigla, int idEstados, int idPais, int inativo) {
         this.id = id;
         this.cidade = cidade;
+        this.sigla = sigla;
         this.idEstados = idEstados;
         this.idPais = idPais;
-        this.dataCriacao = dataCriacao;
-        this.dataAlteracao = dataAlteracao;
         this.inativo = inativo;
-        this.operador = operador;
     }
 
     public int getId() {
@@ -57,6 +51,14 @@ public class Cidade {
         this.cidade = cidade;
     }
 
+    public String getSigla() {
+        return sigla;
+    }
+
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
+    }
+
     public int getIdEstados() {
         return idEstados;
     }
@@ -73,22 +75,6 @@ public class Cidade {
         this.idPais = idPais;
     }
 
-    public String getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(String dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public String getDataAlteracao() {
-        return dataAlteracao;
-    }
-
-    public void setDataAlteracao(String dataAlteracao) {
-        this.dataAlteracao = dataAlteracao;
-    }
-
     public int getInativo() {
         return inativo;
     }
@@ -97,15 +83,5 @@ public class Cidade {
         this.inativo = inativo;
     }
 
-    public String getOperador() {
-        return operador;
-    }
-
-    public void setOperador(String operador) {
-        this.operador = operador;
-    }
-
-   
-    
     
 }

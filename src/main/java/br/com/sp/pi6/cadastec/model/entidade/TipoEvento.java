@@ -12,30 +12,20 @@ package br.com.sp.pi6.cadastec.model.entidade;
 public class TipoEvento {
     private int id;
     private String tipoEvento;
-    private String dataCriacao;
-    private String dataAlteracao;
     private int inativo;
-    private String operador;
 
     public TipoEvento() {
         this.id = 0;
         this.tipoEvento = "";
-        this.dataCriacao = "";
-        this.dataAlteracao = "";
         this.inativo = 0;
-        this.operador = "";
-    }
- 
-    public TipoEvento(int id, String tipoEvento, String dataCriacao, String dataAlteracao, int inativo, String operador) {
-        this.id = id;
-        this.tipoEvento = tipoEvento;
-        this.dataCriacao = dataCriacao;
-        this.dataAlteracao = dataAlteracao;
-        this.inativo = inativo;
-        this.operador = operador;
     }
 
-    
+    public TipoEvento(int id, String tipoEvento, int inativo) {
+        this.id = id;
+        this.tipoEvento = tipoEvento;
+        this.inativo = inativo;
+    }
+
     public int getId() {
         return id;
     }
@@ -52,22 +42,6 @@ public class TipoEvento {
         this.tipoEvento = tipoEvento;
     }
 
-    public String getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(String dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public String getDataAlteracao() {
-        return dataAlteracao;
-    }
-
-    public void setDataAlteracao(String dataAlteracao) {
-        this.dataAlteracao = dataAlteracao;
-    }
-
     public int getInativo() {
         return inativo;
     }
@@ -75,13 +49,6 @@ public class TipoEvento {
     public void setInativo(int inativo) {
         this.inativo = inativo;
     }
-
-    public String getOperador() {
-        return operador;
-    }
-
-    public void setOperador(String operador) {
-        this.operador = operador;
-    }
+    
     
 }

@@ -12,38 +12,24 @@ package br.com.sp.pi6.cadastec.model.entidade;
 public class Estado {
     private int id;
     private String estado;
+    private String sigla;
     private int idPais;
-    private String dataCriacao;
-    private String dataAlteracao;
     private int inativo;
-    private String operador;
 
     public Estado() {
         this.id = 0;
         this.estado = "";
+        this.sigla = "";
         this.idPais = 0;
-        this.dataCriacao = "";
-        this.dataAlteracao = "";
         this.inativo = 0;
-        this.operador = "";
     }
 
-    public Estado(int id, String estado, int idPais, String dataCriacao, String dataAlteracao, int inativo, String operador) {
+    public Estado(int id, String estado, String sigla, int idPais, int inativo) {
         this.id = id;
         this.estado = estado;
+        this.sigla = sigla;
         this.idPais = idPais;
-        this.dataCriacao = dataCriacao;
-        this.dataAlteracao = dataAlteracao;
         this.inativo = inativo;
-        this.operador = operador;
-    }
-
-    public String getOperador() {
-        return operador;
-    }
-
-    public void setOperador(String operador) {
-        this.operador = operador;
     }
 
     public int getId() {
@@ -62,21 +48,20 @@ public class Estado {
         this.estado = estado;
     }
 
-
-    public String getDataCriacao() {
-        return dataCriacao;
+    public String getSigla() {
+        return sigla;
     }
 
-    public void setDataCriacao(String dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
     }
 
-    public String getDataAlteracao() {
-        return dataAlteracao;
+    public int getIdPais() {
+        return idPais;
     }
 
-    public void setDataAlteracao(String dataAlteracao) {
-        this.dataAlteracao = dataAlteracao;
+    public void setIdPais(int idPais) {
+        this.idPais = idPais;
     }
 
     public int getInativo() {
@@ -87,13 +72,5 @@ public class Estado {
         this.inativo = inativo;
     }
 
-    public int getIdPais() {
-        return idPais;
-    }
-
-    public void setIdPais(int idPais) {
-        this.idPais = idPais;
-    }
-    
     
 }

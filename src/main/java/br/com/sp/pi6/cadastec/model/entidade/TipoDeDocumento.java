@@ -12,35 +12,18 @@ package br.com.sp.pi6.cadastec.model.entidade;
 public class TipoDeDocumento {
     private int id;
     private String tipoDeDocumento;
-    private String dataCriacao;
-    private String dataAlteracao;
     private int inativo;
-    private String operador;
 
     public TipoDeDocumento() {
         this.id = 0;
         this.tipoDeDocumento = "";
-        this.dataCriacao = "";
-        this.dataAlteracao = "";
         this.inativo = 0;
-        this.operador = "";
     }
 
-    public TipoDeDocumento(int id, String tipoDeDocumento, String dataCriacao, String dataAlteracao, int inativo, String operador) {
+    public TipoDeDocumento(int id, String tipoDeDocumento, int inativo) {
         this.id = id;
         this.tipoDeDocumento = tipoDeDocumento;
-        this.dataCriacao = dataCriacao;
-        this.dataAlteracao = dataAlteracao;
         this.inativo = inativo;
-        this.operador = operador;
-    }
-
-    public String getOperador() {
-        return operador;
-    }
-
-    public void setOperador(String operador) {
-        this.operador = operador;
     }
 
     public int getId() {
@@ -57,22 +40,6 @@ public class TipoDeDocumento {
 
     public void setTipoDeDocumento(String tipoDeDocumento) {
         this.tipoDeDocumento = tipoDeDocumento;
-    }
-
-    public String getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(String dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public String getDataAlteracao() {
-        return dataAlteracao;
-    }
-
-    public void setDataAlteracao(String dataAlteracao) {
-        this.dataAlteracao = dataAlteracao;
     }
 
     public int getInativo() {

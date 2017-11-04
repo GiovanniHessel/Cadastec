@@ -26,7 +26,7 @@ public class UsuarioDao {
     
     public boolean insert(Usuario usuario){
         String sql = "insert into Usuarios"
-                + "(usuario, chave, online, inativo, acesso)"
+                + "(usuario, chave, inativo, acesso)"
                 + " values (?,?,?,?,?)";
         connection.open();
         try {
@@ -37,7 +37,6 @@ public class UsuarioDao {
             // seta os valores
             stmt.setString(1, usuario.getUsuario());
             stmt.setString(2, usuario.getChave());
-            stmt.setInt(3, usuario.getOnline());
             stmt.setInt(4, usuario.getInativo());
             stmt.setString(4, usuario.getAcesso());
 
@@ -70,7 +69,6 @@ public class UsuarioDao {
                 usuario.setUsuario(rs.getString("usuario"));
                 usuario.setChave(rs.getString("chave"));
                 usuario.setAcesso(rs.getString("acesso"));
-                usuario.setOnline(rs.getInt("online"));
                 usuario.setInativo(rs.getInt("inativo"));
                 // adicionando o objeto à lista
             }

@@ -14,39 +14,22 @@ public class Inscricao {
     private int idPessoas;
     private int idStatusInteresses;
     private int idEventos;
-    private String dataCriacao;
-    private String dataAlteracao;
     private int inativo;
-    private String operador;
 
     public Inscricao() {
         this.id = 0;
         this.idPessoas = 0;
         this.idStatusInteresses = 0;
         this.idEventos = 0;
-        this.dataCriacao = "";
-        this.dataAlteracao = "";
         this.inativo = 0;
-        this.operador = "";
     }
 
-    public Inscricao(int id, int idPessoas, int idStatusInteresses, int idEventos, String dataCriacao, String dataAlteracao, int inativo, String operador) {
+    public Inscricao(int id, int idPessoas, int idStatusInteresses, int idEventos, int inativo) {
         this.id = id;
         this.idPessoas = idPessoas;
         this.idStatusInteresses = idStatusInteresses;
         this.idEventos = idEventos;
-        this.dataCriacao = dataCriacao;
-        this.dataAlteracao = dataAlteracao;
         this.inativo = inativo;
-        this.operador = operador;
-    }
-
-    public String getOperador() {
-        return operador;
-    }
-
-    public void setOperador(String operador) {
-        this.operador = operador;
     }
 
     public int getId() {
@@ -81,22 +64,6 @@ public class Inscricao {
         this.idEventos = idEventos;
     }
 
-    public String getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(String dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public String getDataAlteracao() {
-        return dataAlteracao;
-    }
-
-    public void setDataAlteracao(String dataAlteracao) {
-        this.dataAlteracao = dataAlteracao;
-    }
-
     public int getInativo() {
         return inativo;
     }
@@ -104,7 +71,5 @@ public class Inscricao {
     public void setInativo(int inativo) {
         this.inativo = inativo;
     }
-    
-    
     
 }

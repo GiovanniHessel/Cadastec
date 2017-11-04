@@ -12,27 +12,18 @@ package br.com.sp.pi6.cadastec.model.entidade;
 public class Site {
     private int id;
     private String site;
-    private String dataCriacao;
-    private String dataAlteracao;
     private int inativo;
-    private String operador;
 
     public Site() {
         this.id = 0;
         this.site = "";
-        this.dataCriacao = "";
-        this.dataAlteracao = "";
         this.inativo = 0;
-        this.operador = "";
     }
 
-    public Site(int id, String site, String dataCriacao, String dataAlteracao, int inativo, String operador) {
+    public Site(int id, String site, int inativo) {
         this.id = id;
         this.site = site;
-        this.dataCriacao = dataCriacao;
-        this.dataAlteracao = dataAlteracao;
         this.inativo = inativo;
-        this.operador = operador;
     }
 
     public int getId() {
@@ -51,22 +42,6 @@ public class Site {
         this.site = site;
     }
 
-    public String getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(String dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public String getDataAlteracao() {
-        return dataAlteracao;
-    }
-
-    public void setDataAlteracao(String dataAlteracao) {
-        this.dataAlteracao = dataAlteracao;
-    }
-
     public int getInativo() {
         return inativo;
     }
@@ -75,13 +50,6 @@ public class Site {
         this.inativo = inativo;
     }
 
-    public String getOperador() {
-        return operador;
-    }
-
-    public void setOperador(String operador) {
-        this.operador = operador;
-    }
     
     
 }

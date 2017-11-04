@@ -23,7 +23,6 @@ public class Pessoa {
     private int idEmails;
     private int idSites;
     private int inativo;
-    private String operador;
 
     public Pessoa() {
         this.id = 0;
@@ -39,10 +38,9 @@ public class Pessoa {
         this.idEmails = 0;
         this.idSites = 0;
         this.inativo = 0;
-        this.operador = "";
     }
 
-    public Pessoa(int id, String nome, String sobrenome, String cpf, String documento, int idTiposDeDocumentos, String sexo, String dataDeNascimento, int idEnderecos, int idContatos, int idEmails, int idSites, int inativo, String operador) {
+    public Pessoa(int id, String nome, String sobrenome, String cpf, String documento, int idTiposDeDocumentos, String sexo, String dataDeNascimento, int idEnderecos, int idContatos, int idEmails, int idSites, int inativo) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -56,7 +54,6 @@ public class Pessoa {
         this.idEmails = idEmails;
         this.idSites = idSites;
         this.inativo = inativo;
-        this.operador = operador;
     }
 
     public int getId() {
@@ -161,15 +158,5 @@ public class Pessoa {
 
     public void setInativo(int inativo) {
         this.inativo = inativo;
-    }
-
-    public String getOperador() {
-        return operador;
-    }
-
-    public void setOperador(String operador) {
-        this.operador = operador;
-    }
-
-    
+    }   
 }

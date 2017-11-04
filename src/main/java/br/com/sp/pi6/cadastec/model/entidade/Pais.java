@@ -12,27 +12,21 @@ package br.com.sp.pi6.cadastec.model.entidade;
 public class Pais {
     private int id;
     private String pais;
-    private String dataCriacao;
-    private String dataAlteracao;
+    private String sigla;
     private int inativo;
-    private String operador;
 
     public Pais() {
         this.id = 0;
         this.pais = "";
-        this.dataCriacao = "";
-        this.dataAlteracao = "";
+        this.sigla = "";
         this.inativo = 0;
-        this.operador = "";
     }
 
-    public Pais(int id, String pais, String dataCriacao, String dataAlteracao, int inativo, String operador) {
+    public Pais(int id, String pais, String sigla, int inativo) {
         this.id = id;
         this.pais = pais;
-        this.dataCriacao = dataCriacao;
-        this.dataAlteracao = dataAlteracao;
+        this.sigla = sigla;
         this.inativo = inativo;
-        this.operador = operador;
     }
 
     public int getId() {
@@ -51,20 +45,12 @@ public class Pais {
         this.pais = pais;
     }
 
-    public String getDataCriacao() {
-        return dataCriacao;
+    public String getSigla() {
+        return sigla;
     }
 
-    public void setDataCriacao(String dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public String getDataAlteracao() {
-        return dataAlteracao;
-    }
-
-    public void setDataAlteracao(String dataAlteracao) {
-        this.dataAlteracao = dataAlteracao;
+    public void setSigla(String sigla) {
+        this.sigla = sigla;
     }
 
     public int getInativo() {
@@ -74,14 +60,9 @@ public class Pais {
     public void setInativo(int inativo) {
         this.inativo = inativo;
     }
-
-    public String getOperador() {
-        return operador;
-    }
-
-    public void setOperador(String operador) {
-        this.operador = operador;
-    }
     
+    
+
+
     
 }

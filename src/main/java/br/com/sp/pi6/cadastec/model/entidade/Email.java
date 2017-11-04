@@ -12,35 +12,18 @@ package br.com.sp.pi6.cadastec.model.entidade;
 public class Email {
     private int id;
     private String email;
-    private String dataCriacao;
-    private String dataAlteracao;
     private int inativo;
-    private String operador;
 
     public Email() {
         this.id = 0;
         this.email = "";
-        this.dataCriacao = "";
-        this.dataAlteracao = "";
         this.inativo = 0;
-        this.operador = "";
     }
 
-    public Email(int id, String email, String dataCriacao, String dataAlteracao, int inativo, String operador) {
+    public Email(int id, String email, int inativo) {
         this.id = id;
         this.email = email;
-        this.dataCriacao = dataCriacao;
-        this.dataAlteracao = dataAlteracao;
         this.inativo = inativo;
-        this.operador = operador;
-    }
-
-    public String getOperador() {
-        return operador;
-    }
-
-    public void setOperador(String operador) {
-        this.operador = operador;
     }
 
     public int getId() {
@@ -57,22 +40,6 @@ public class Email {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(String dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public String getDataAlteracao() {
-        return dataAlteracao;
-    }
-
-    public void setDataAlteracao(String dataAlteracao) {
-        this.dataAlteracao = dataAlteracao;
     }
 
     public int getInativo() {

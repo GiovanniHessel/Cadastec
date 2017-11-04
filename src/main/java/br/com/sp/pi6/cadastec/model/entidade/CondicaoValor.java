@@ -15,10 +15,7 @@ public class CondicaoValor {
     private float preco;
     private String dataInicio;
     private String dataTermino;
-    private String dataCriacao;
-    private String dataAlteracao;
     private int inativo;
-    private String operador;
 
     public CondicaoValor() {
         this.id = 0;
@@ -26,32 +23,19 @@ public class CondicaoValor {
         this.preco = 0;
         this.dataInicio = "";
         this.dataTermino = "";
-        this.dataCriacao = "";
-        this.dataAlteracao = "";
         this.inativo = 0;
-        this.operador = "";
     }
 
     
-    public CondicaoValor(int id, String descricao, float preco, String dataInicio, String dataTermino, String dataCriacao, String dataAlteracao, int inativo, String operador) {
+    public CondicaoValor(int id, String descricao, float preco, String dataInicio, String dataTermino,int inativo) {
         this.id = id;
         this.descricao = descricao;
         this.preco = preco;
         this.dataInicio = dataInicio;
         this.dataTermino = dataTermino;
-        this.dataCriacao = dataCriacao;
-        this.dataAlteracao = dataAlteracao;
         this.inativo = inativo;
-        this.operador = operador;
     }
 
-    public String getOperador() {
-        return operador;
-    }
-
-    public void setOperador(String operador) {
-        this.operador = operador;
-    }
 
     public int getId() {
         return id;
@@ -91,22 +75,6 @@ public class CondicaoValor {
 
     public void setDataTermino(String dataTermino) {
         this.dataTermino = dataTermino;
-    }
-
-    public String getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(String dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public String getDataAlteracao() {
-        return dataAlteracao;
-    }
-
-    public void setDataAlteracao(String dataAlteracao) {
-        this.dataAlteracao = dataAlteracao;
     }
 
     public int getInativo() {
