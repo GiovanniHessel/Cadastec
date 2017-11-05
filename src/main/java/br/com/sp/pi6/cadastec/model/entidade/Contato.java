@@ -14,6 +14,8 @@ public class Contato {
     private String ddd;
     private String numero;
     private String tipoNumero;
+    private String email;
+    private String site;
     private int inativo;
 
     public Contato() {
@@ -21,17 +23,21 @@ public class Contato {
         this.ddd = "";
         this.numero = "";
         this.tipoNumero = "";
+        this.email = "";
+        this.site = "";
         this.inativo = 0;
     }
 
-    public Contato(int id, String ddd, String numero, String tipoNumero, int inativo) {
+    public Contato(int id, String ddd, String numero, String tipoNumero, String email, String site, int inativo) {
         this.id = id;
         this.ddd = ddd;
         this.numero = numero;
         this.tipoNumero = tipoNumero;
+        this.email = email;
+        this.site = site;
         this.inativo = inativo;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -64,6 +70,22 @@ public class Contato {
         this.tipoNumero = tipoNumero;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSite() {
+        return site;
+    }
+
+    public void setSite(String site) {
+        this.site = site;
+    }
+
     public int getInativo() {
         return inativo;
     }
@@ -71,6 +93,7 @@ public class Contato {
     public void setInativo(int inativo) {
         this.inativo = inativo;
     }
+
     
     
 }

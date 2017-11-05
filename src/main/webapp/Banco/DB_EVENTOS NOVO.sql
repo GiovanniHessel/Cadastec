@@ -30,32 +30,6 @@ id int primary key identity
 go
 
 
-create table Contatos
-(
-id int primary key identity
-,ddd char(33)
-,numero char(9)
-,tipoNumero varchar(20)
-,inativo int
-)
-go
-
-create table Emails
-(
-id int primary key identity
-,email varchar(100)
-,inativo int
-)
-go
-
-create table Sites
-(
-id int primary key identity
-,site varchar(100)
-,inativo int
-)
-go
-
 create table Paises
 (
 id int primary key identity
@@ -154,16 +128,10 @@ id int primary key identity
 ,sexo char(1)
 ,dataDeNascimento datetime
 ,idEnderecos int
-,idContatos int
-,idEmails int
-,idSites int 
 ,idUsuarios int
 ,inativo int
 CONSTRAINT FK_Pessoas_TiposDeDocumento			FOREIGN KEY(idTiposDeDocumentos)	REFERENCES TiposDeDocumentos(id)
 ,CONSTRAINT FK_Pessoas_Enderecos			FOREIGN KEY(idEnderecos)			REFERENCES Enderecos(id)
-,CONSTRAINT FK_Pessoas_Contatos				FOREIGN KEY(idContatos)				REFERENCES Contatos(id)
-,CONSTRAINT FK_Pessoas_Emails				FOREIGN KEY(idEmails)				REFERENCES Emails(id)
-,CONSTRAINT FK_Pessoas_Sites				FOREIGN KEY(idSites)				REFERENCES Sites(id)
 ,CONSTRAINT FK_Pessoas_Usuarios				FOREIGN KEY(idUsuarios)		REFERENCES Usuarios(id)
 )
 go
@@ -180,17 +148,39 @@ id int primary key identity
 ,idCondicoesValores int
 ,idPessoas int 
 ,idTiposEventos int 
-,idContatos int
-,idEmails int
-,idSites int 
 ,inativo int
 CONSTRAINT FK_Eventos_Enderecos				FOREIGN KEY(idEnderecos)			REFERENCES Enderecos(id)
 ,CONSTRAINT FK_Eventos_CondicoesValores		FOREIGN KEY(idCondicoesValores)		REFERENCES CondicoesValores(id)
 ,CONSTRAINT FK_Eventos_Pessoas				FOREIGN KEY(idPessoas)				REFERENCES Pessoas(id)
 ,CONSTRAINT FK_Eventos_TiposEventos			FOREIGN KEY(idTiposEventos)			REFERENCES TiposEventos(id)
-,CONSTRAINT FK_Eventos_Contatos				FOREIGN KEY(idContatos)				REFERENCES Contatos(id)
-,CONSTRAINT FK_Eventos_Emails				FOREIGN KEY(idEmails)				REFERENCES Emails(id)
-,CONSTRAINT FK_Eventos_Sites				FOREIGN KEY(idSites)				REFERENCES Sites(id)
+)
+go
+
+create table ContatosEventos
+(
+id int primary key identity
+,ddd char(33)
+,numero char(9)
+,tipoNumero varchar(20)
+,email varchar(100)
+,site varchar(100)
+,idEventos int
+,inativo int
+,CONSTRAINT FK_Contatos_Eventos				FOREIGN KEY(idEventos)				REFERENCES Eventos(id)
+)
+go
+
+create table ContatosPessoas
+(
+id int primary key identity
+,ddd char(33)
+,numero char(9)
+,tipoNumero varchar(20)
+,email varchar(100)
+,site varchar(100)
+,idPessoas int
+,inativo int
+,CONSTRAINT FK_Contatos_Pessoas				FOREIGN KEY(idPessoas)				REFERENCES Pessoas(id)
 )
 go
 
@@ -222,17 +212,3 @@ id int primary key identity
 )
 go
 
-Create Table StringConnections
-(     
-	id int primary key identity
-	,descricao varchar(50)
-	,porta varchar(5)
-      ,host varchar(100)
-      ,base varchar(100)
-      ,login varchar(200)
-      ,senha varchar(200)
-      ,drive varchar(300)
-      ,connectionURL varchar(300)
-	,inativo int
-)
-go
