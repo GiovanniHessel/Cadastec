@@ -19,16 +19,16 @@ import java.util.List;
  * @author GIOVANNI
  */
 public class PaisDao {
-      private DbConnection connection;
+    private DbConnection connection;
 
     public PaisDao() {
         this.connection = Cadastec.connection;
     }
     
     public boolean insert(Pais pais){
-        String sql = "insert into Pais"
+        String sql = "insert into Paises"
                 + "(pais, sigla, inativo)"
-                + " values (?,?,?,?,?)";
+                + " values (?,?,?)";
         connection.open();
         try {
             // prepared statement para inserção
@@ -55,7 +55,7 @@ public class PaisDao {
     public Pais getPais(Pais pais) {
         this.connection.open();
         try {
-            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, pais, sigla, inativo from Pais where id = ?");
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, pais, sigla, inativo from Paises where id = ?");
             stmt.setInt(1, pais.getId());
             
             ResultSet rs = stmt.executeQuery();
@@ -84,7 +84,7 @@ public class PaisDao {
     public List<Pais> getPaises() {
         this.connection.open();
         try {
-            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, pais, sigla, inativo from Pais");
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, pais, sigla, inativo from Paises");
             
             ResultSet rs = stmt.executeQuery();
             List<Pais> paises = new ArrayList();
