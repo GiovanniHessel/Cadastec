@@ -51,6 +51,33 @@ public class TipoEventoDao {
         return true;
     }
     
+    public TipoEvento getTipoEvento(int id) {
+        this.connection.open();
+        try {
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, tipoEvento, inativo from TiposEventos where id = ?");
+            stmt.setInt(1, id);
+            
+            ResultSet rs = stmt.executeQuery();
+            TipoEvento tipoEvento = new TipoEvento();
+            // criando o objeto Contato
+            if (rs.next()){
+               
+                tipoEvento.setId(rs.getInt("id"));
+                tipoEvento.setTipoEvento(rs.getString("tipoEvento"));
+                tipoEvento.setInativo(rs.getInt("inativo"));
+                // adicionando o objeto à lista
+            }
+            rs.close();
+            stmt.close();
+            connection.close();
+            return tipoEvento;
+
+        } catch (SQLException e) {
+            connection.close();
+            throw new RuntimeException(e);
+        }
+    }
+    
     public TipoEvento getTipoEvento(TipoEvento tipoEvento) {
         this.connection.open();
         try {

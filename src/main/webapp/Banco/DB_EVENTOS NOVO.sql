@@ -18,18 +18,6 @@ go
 insert into TiposEventos (tipoEvento,inativo) values ('Palestra',0)
 go
 
-create table CondicoesValores
-(
-id int primary key identity
-,descricao varchar(200)
-,preco numeric(20,2)
-,dataInicio datetime
-,dataTermino datetime
-,inativo int
-)
-go
-
-
 create table Paises
 (
 id int primary key identity
@@ -89,32 +77,17 @@ id int primary key identity
 )
 go
 
-create table TiposDeDocumentos
-(
-id int primary key identity
-,tipoDeDocumento varchar(50)
-,inativo int
-)
-go
-
-insert into TiposDeDocumentos (tipoDeDocumento,inativo) values ('RG',0)
-go
-insert into TiposDeDocumentos (tipoDeDocumento,inativo) values ('CPF',0)
-go
-insert into TiposDeDocumentos (tipoDeDocumento,inativo) values ('Passaporte',0)
-go
-
 create table Usuarios
 (
 id int primary key identity
 ,usuario varchar(50)
 ,chave varchar(512)
-,acesso varchar(100)
+,tipo int 
 ,inativo int
 )
 go
 
-insert into Usuarios (usuario,chave,acesso,inativo) values ('cadastec','cadastec','total',0)
+insert into Usuarios (usuario,chave,tipo,inativo) values ('cadastec','cadastec',0,0)
 go
 
 create table Pessoas
@@ -122,17 +95,24 @@ create table Pessoas
 id int primary key identity
 ,nome varchar(100)
 ,sobrenome varchar(100)
-,cpf varchar(11)
-,documento varchar(50)
-,idTiposDeDocumentos int
-,sexo char(1)
+,CPF varchar(50)
 ,dataDeNascimento datetime
-,idEnderecos int
 ,idUsuarios int
 ,inativo int
-CONSTRAINT FK_Pessoas_TiposDeDocumento			FOREIGN KEY(idTiposDeDocumentos)	REFERENCES TiposDeDocumentos(id)
-,CONSTRAINT FK_Pessoas_Enderecos			FOREIGN KEY(idEnderecos)			REFERENCES Enderecos(id)
-,CONSTRAINT FK_Pessoas_Usuarios				FOREIGN KEY(idUsuarios)		REFERENCES Usuarios(id)
+,CONSTRAINT FK_Pessoas_Usuarios				FOREIGN KEY(idUsuarios)				REFERENCES Usuarios(id)
+)
+go
+
+create table Empresas
+(
+id int primary key identity
+,nomeFantasia varchar(100)
+,razaoSocial varchar(100)
+,CNPJ varchar(50)
+,dataDeCriacao datetime
+,idUsuarios int
+,inativo int
+,CONSTRAINT FK_Empresas_Usuarios			FOREIGN KEY(idUsuarios)		REFERENCES Usuarios(id)
 )
 go
 
@@ -145,70 +125,41 @@ id int primary key identity
 ,dataHoraFinal datetime
 ,dataPromover datetime
 ,idEnderecos int
-,idCondicoesValores int
 ,idPessoas int 
+,idEmpresas int 
 ,idTiposEventos int 
 ,inativo int
 CONSTRAINT FK_Eventos_Enderecos				FOREIGN KEY(idEnderecos)			REFERENCES Enderecos(id)
-,CONSTRAINT FK_Eventos_CondicoesValores		FOREIGN KEY(idCondicoesValores)		REFERENCES CondicoesValores(id)
 ,CONSTRAINT FK_Eventos_Pessoas				FOREIGN KEY(idPessoas)				REFERENCES Pessoas(id)
+,CONSTRAINT FK_Eventos_Empresas				FOREIGN KEY(idEmpresas)				REFERENCES Empresas(id)
 ,CONSTRAINT FK_Eventos_TiposEventos			FOREIGN KEY(idTiposEventos)			REFERENCES TiposEventos(id)
 )
 go
 
-create table ContatosEventos
+create table Contatos
 (
 id int primary key identity
 ,ddd char(33)
 ,numero char(9)
-,tipoNumero varchar(20)
-,email varchar(100)
-,site varchar(100)
-,idEventos int
-,inativo int
-,CONSTRAINT FK_Contatos_Eventos				FOREIGN KEY(idEventos)				REFERENCES Eventos(id)
-)
-go
-
-create table ContatosPessoas
-(
-id int primary key identity
-,ddd char(33)
-,numero char(9)
-,tipoNumero varchar(20)
 ,email varchar(100)
 ,site varchar(100)
 ,idPessoas int
+,idEventos int
 ,inativo int
+,CONSTRAINT FK_Contatos_Eventos				FOREIGN KEY(idEventos)				REFERENCES Eventos(id)
 ,CONSTRAINT FK_Contatos_Pessoas				FOREIGN KEY(idPessoas)				REFERENCES Pessoas(id)
 )
-go
-
-create table StatusInteresses
-(
-id int primary key identity
-,statusInteresse varchar(100)
-,inativo int
-)
-go
-
-insert into StatusInteresses (statusInteresse,inativo) values ('Comparecerei',0)
-go
-insert into StatusInteresses (statusInteresse,inativo) values ('Talvez',0)
-go
-insert into StatusInteresses (statusInteresse,inativo) values ('Não Comparecerei',0)
 go
 
 create table Inscricoes
 (
 id int primary key identity
 ,idPessoas int
-,idStatusInteresses int
+,idEmpresas int
 ,idEventos int
 ,inativo int
 ,CONSTRAINT FK_Inscricoes_Pessoas				FOREIGN KEY(idPessoas)				REFERENCES Pessoas(id)
-,CONSTRAINT FK_Inscricoes_StatusInteresses		FOREIGN KEY(idStatusInteresses)		REFERENCES StatusInteresses(id)
+,CONSTRAINT FK_Inscricoes_Empresas				FOREIGN KEY(idEmpresas)				REFERENCES Empresas(id)
 ,CONSTRAINT FK_Inscricoes_Eventos				FOREIGN KEY(idEventos)				REFERENCES Eventos(id)
 )
 go
-

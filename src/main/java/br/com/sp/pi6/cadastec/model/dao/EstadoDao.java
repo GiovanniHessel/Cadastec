@@ -39,7 +39,7 @@ public class EstadoDao {
             // seta os valores
             stmt.setString(1, estado.getEstado());
             stmt.setString(2, estado.getSigla());
-            stmt.setInt(3, estado.getIdPais());
+            stmt.setInt(3, estado.getPais().getId());
             stmt.setInt(4, estado.getInativo());
 
             // executa
@@ -59,6 +59,7 @@ public class EstadoDao {
         try {
             PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, estado, sigla, idPaises, inativo from Estados where id = ?");
             stmt.setInt(1, estado.getId());
+            PaisDao paisDao = new PaisDao();
             
             ResultSet rs = stmt.executeQuery();
             estado = new Estado();
@@ -68,7 +69,40 @@ public class EstadoDao {
                 estado.setId(rs.getInt("id"));
                 estado.setEstado(rs.getString("estado"));
                 estado.setSigla(rs.getString("sigla"));
-                estado.setIdPais(rs.getInt("idPaises"));
+                Pais pais = paisDao.getPais(rs.getInt("idPaises"));
+                estado.setPais(pais);
+                estado.setInativo(rs.getInt("inativo"));
+                // adicionando o objeto à lista
+            }
+                
+            rs.close();
+            stmt.close();
+            connection.close();
+            return estado;
+
+        } catch (SQLException e) {
+            connection.close();
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public Estado getEstado(int id) {
+        this.connection.open();
+        try {
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, estado, sigla, idPaises, inativo from Estados where id = ?");
+            stmt.setInt(1, id);
+            PaisDao paisDao = new PaisDao();
+            
+            ResultSet rs = stmt.executeQuery();
+            Estado estado = new Estado();
+            // criando o objeto Contato
+            if (rs.next()){
+               
+                estado.setId(rs.getInt("id"));
+                estado.setEstado(rs.getString("estado"));
+                estado.setSigla(rs.getString("sigla"));
+                Pais pais = paisDao.getPais(rs.getInt("idPaises"));
+                estado.setPais(pais);
                 estado.setInativo(rs.getInt("inativo"));
                 // adicionando o objeto à lista
             }
@@ -91,13 +125,15 @@ public class EstadoDao {
             
             ResultSet rs = stmt.executeQuery();
             List<Estado> estados = new ArrayList();
+            PaisDao paisDao = new PaisDao();
             // criando o objeto Contato
             while (rs.next()){
                 Estado estado = new Estado();
                 estado.setId(rs.getInt("id"));
                 estado.setEstado(rs.getString("estado"));
                 estado.setSigla(rs.getString("sigla"));
-                estado.setIdPais(rs.getInt("idPaises"));
+                Pais pais = paisDao.getPais(rs.getInt("idPaises"));
+                estado.setPais(pais);
                 estado.setInativo(rs.getInt("inativo"));
                 // adicionando o objeto à lista
                 estados.add(estado);
@@ -120,13 +156,46 @@ public class EstadoDao {
             
             ResultSet rs = stmt.executeQuery();
             List<Estado> estados = new ArrayList();
+            PaisDao paisDao = new PaisDao();
             // criando o objeto Contato
             while (rs.next()){
                 Estado estado = new Estado();
                 estado.setId(rs.getInt("id"));
                 estado.setEstado(rs.getString("estado"));
                 estado.setSigla(rs.getString("sigla"));
-                estado.setIdPais(rs.getInt("idPaises"));
+                pais = paisDao.getPais(rs.getInt("idPaises"));
+                estado.setPais(pais);
+                estado.setInativo(rs.getInt("inativo"));
+                // adicionando o objeto à lista
+                estados.add(estado);
+            }
+            rs.close();
+            stmt.close();
+            connection.close();
+            return estados;
+        } catch (SQLException e) {
+            connection.close();
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public List<Estado> getEstados(int idPais) {
+        this.connection.open();
+        try {
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, estado, sigla, idPaises, inativo from Estados where idPaises = ?");
+            stmt.setInt(1, idPais);
+            
+            ResultSet rs = stmt.executeQuery();
+            List<Estado> estados = new ArrayList();
+            PaisDao paisDao = new PaisDao();
+            // criando o objeto Contato
+            while (rs.next()){
+                Estado estado = new Estado();
+                estado.setId(rs.getInt("id"));
+                estado.setEstado(rs.getString("estado"));
+                estado.setSigla(rs.getString("sigla"));
+                Pais pais = paisDao.getPais(rs.getInt("idPaises"));
+                estado.setPais(pais);
                 estado.setInativo(rs.getInt("inativo"));
                 // adicionando o objeto à lista
                 estados.add(estado);

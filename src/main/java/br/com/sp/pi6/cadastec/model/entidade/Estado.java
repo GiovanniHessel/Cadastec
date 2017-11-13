@@ -13,22 +13,22 @@ public class Estado {
     private int id;
     private String estado;
     private String sigla;
-    private int idPais;
+    private Pais pais;
     private int inativo;
 
     public Estado() {
         this.id = 0;
         this.estado = "";
         this.sigla = "";
-        this.idPais = 0;
+        this.pais = new Pais();
         this.inativo = 0;
     }
 
-    public Estado(int id, String estado, String sigla, int idPais, int inativo) {
+    public Estado(int id, String estado, String sigla, Pais pais, int inativo) {
         this.id = id;
         this.estado = estado;
         this.sigla = sigla;
-        this.idPais = idPais;
+        this.pais = pais;
         this.inativo = inativo;
     }
 
@@ -56,12 +56,12 @@ public class Estado {
         this.sigla = sigla;
     }
 
-    public int getIdPais() {
-        return idPais;
+    public Pais getPais() {
+        return pais;
     }
 
-    public void setIdPais(int idPais) {
-        this.idPais = idPais;
+    public void setPais(Pais pais) {
+        this.pais = pais;
     }
 
     public int getInativo() {

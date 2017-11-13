@@ -7,7 +7,10 @@ package br.com.sp.pi6.cadastec.model.dao;
 
 import br.com.sp.pi6.cadastec.control.system.Cadastec;
 import br.com.sp.pi6.cadastec.model.db.contrato.DbConnection;
+import br.com.sp.pi6.cadastec.model.entidade.Empresa;
+import br.com.sp.pi6.cadastec.model.entidade.Evento;
 import br.com.sp.pi6.cadastec.model.entidade.Inscricao;
+import br.com.sp.pi6.cadastec.model.entidade.Pessoa;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,7 +30,7 @@ public class InscricaoDao {
     
     public boolean insert(Inscricao inscricao){
         String sql = "insert into Inscricoes"
-                + "(idPessoas, idStatusInteresses, idEventos, inativo)"
+                + "(idPessoas, idEmpresas, idEventos, inativo)"
                 + " values (?,?,?,?)";
         connection.open();
         try {
@@ -36,9 +39,9 @@ public class InscricaoDao {
             PreparedStatement stmt = connection.getConnection().prepareStatement(sql);
 
             // seta os valores
-            stmt.setInt(1, inscricao.getIdPessoas());
-            stmt.setInt(2, inscricao.getIdStatusInteresses());
-            stmt.setInt(3, inscricao.getIdEventos());
+            stmt.setInt(1, inscricao.getPessoa().getId());
+            stmt.setInt(2, inscricao.getEmpresa().getId());
+            stmt.setInt(3, inscricao.getEvento().getId());
             stmt.setInt(4, inscricao.getInativo());
             // executa
             stmt.execute();
@@ -55,8 +58,11 @@ public class InscricaoDao {
     public Inscricao getInscricao(Inscricao inscricao) {
         this.connection.open();
         try {
-            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, idPessoas, idStatusInteresses, idEventos, inativo from Inscricoes where id = ?");
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, idPessoas, idEmpresas, idEventos, inativo from Inscricoes where id = ?");
             stmt.setInt(1, inscricao.getId());
+            PessoaDao pessoaDao = new PessoaDao();
+            EventoDao eventoDao = new EventoDao();
+            EmpresaDao empresaDao = new EmpresaDao();
             
             ResultSet rs = stmt.executeQuery();
             inscricao = new Inscricao();
@@ -64,9 +70,12 @@ public class InscricaoDao {
             if (rs.next()){
                
                 inscricao.setId(rs.getInt("id"));
-                inscricao.setIdPessoas(rs.getInt("idPessoas"));
-                inscricao.setIdStatusInteresses(rs.getInt("idStatusInteresses"));
-                inscricao.setIdEventos(rs.getInt("idEventos"));
+                Pessoa pessoa = pessoaDao.getPessoa(rs.getInt("idPessoas"));
+                inscricao.setPessoa(pessoa);
+                Empresa empresa = empresaDao.getEmpresa(rs.getInt("idEmpresas"));
+                inscricao.setEmpresa(empresa);
+                Evento evento = eventoDao.getEvento(rs.getInt("idEventos"));
+                inscricao.setEvento(evento);
                 inscricao.setInativo(rs.getInt("inativo"));
                 // adicionando o objeto à lista
             }
@@ -84,7 +93,10 @@ public class InscricaoDao {
     public List<Inscricao> getInscricoes() {
         this.connection.open();
         try {
-            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, idPessoas, idStatusInteresses, idEventos, inativo from Inscricoes");
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, idPessoas, idEmpresas, idEventos, inativo from Inscricoes");
+            PessoaDao pessoaDao = new PessoaDao();
+            EventoDao eventoDao = new EventoDao();
+            EmpresaDao empresaDao = new EmpresaDao();
             
             ResultSet rs = stmt.executeQuery();
             List<Inscricao> inscricoes = new ArrayList();
@@ -93,9 +105,12 @@ public class InscricaoDao {
                 Inscricao inscricao = new Inscricao();
                 
                 inscricao.setId(rs.getInt("id"));
-                inscricao.setIdPessoas(rs.getInt("idPessoas"));
-                inscricao.setIdStatusInteresses(rs.getInt("idStatusInteresses"));
-                inscricao.setIdEventos(rs.getInt("idEventos"));
+                Pessoa pessoa = pessoaDao.getPessoa(rs.getInt("idPessoas"));
+                inscricao.setPessoa(pessoa);
+                Empresa empresa = empresaDao.getEmpresa(rs.getInt("idEmpresas"));
+                inscricao.setEmpresa(empresa);
+                Evento evento = eventoDao.getEvento(rs.getInt("idEventos"));
+                inscricao.setEvento(evento);
                 inscricao.setInativo(rs.getInt("inativo"));
                 // adicionando o objeto à lista
                 inscricoes.add(inscricao);

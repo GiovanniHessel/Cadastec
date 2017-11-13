@@ -81,6 +81,35 @@ public class PaisDao {
         }
     }
     
+    public Pais getPais(int id) {
+        this.connection.open();
+        try {
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, pais, sigla, inativo from Paises where id = ?");
+            stmt.setInt(1, id);
+            
+            ResultSet rs = stmt.executeQuery();
+            Pais pais = new Pais();
+            // criando o objeto Contato
+            if (rs.next()){
+               
+                pais.setId(rs.getInt("id"));
+                pais.setPais(rs.getString("pais"));
+                pais.setSigla(rs.getString("sigla"));
+                pais.setInativo(rs.getInt("inativo"));
+                // adicionando o objeto à lista
+            }
+                
+            rs.close();
+            stmt.close();
+            connection.close();
+            return pais;
+
+        } catch (SQLException e) {
+            connection.close();
+            throw new RuntimeException(e);
+        }
+    }
+    
     public List<Pais> getPaises() {
         this.connection.open();
         try {

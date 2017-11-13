@@ -10,21 +10,18 @@ package br.com.sp.pi6.cadastec.model.entidade;
  * @author GIOVANNI
  */
 public class Evento {
-    int id;
-    String titulo;
-    String descricao;
-    String dataHoraInicial;
-    String dataHoraFinal;
-    String dataPromover;
-    int idEndereco;
-    int idCondicoesValores;
-    int idPessoas;
-    int idTiposEventos;
-    int idContatos;
-    int idEmails;
-    int idSites;
-    int inativo;
-
+    private int id;
+    private String titulo;
+    private String descricao;
+    private String dataHoraInicial;
+    private String dataHoraFinal;
+    private String dataPromover;
+    private Endereco endereco;
+    private Pessoa pessoa;
+    private Empresa empresa;
+    private TipoEvento tipoEvento;
+    private int inativo;
+    
     public Evento() {
         this.id = 0;
         this.titulo = "";
@@ -32,30 +29,32 @@ public class Evento {
         this.dataHoraInicial = "";
         this.dataHoraFinal = "";
         this.dataPromover = "";
-        this.idEndereco = 0;
-        this.idCondicoesValores = 0;
-        this.idPessoas = 0;
-        this.idTiposEventos = 0;
-        this.idContatos = 0;
-        this.idEmails = 0;
-        this.idSites = 0;
+        this.endereco = new Endereco();
+        this.pessoa = new Pessoa();
+        this.empresa = new Empresa();
+        this.tipoEvento = new TipoEvento();
         this.inativo = inativo;
     }
 
-    public Evento(int id, String titulo, String descricao, String dataHoraInicial, String dataHoraFinal, String dataPromover, int idEndereco, int idCondicoesValores, int idPessoas, int idTiposEventos, int idContatos, int idEmails, int idSites, int inativo) {
+    public Evento(int id, String titulo, String descricao, String dataHoraInicial, String dataHoraFinal, String dataPromover, Endereco endereco, Pessoa pessoa, Empresa empresa, TipoEvento tipoEvento, int inativo) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
         this.dataHoraInicial = dataHoraInicial;
         this.dataHoraFinal = dataHoraFinal;
         this.dataPromover = dataPromover;
-        this.idEndereco = idEndereco;
-        this.idCondicoesValores = idCondicoesValores;
-        this.idPessoas = idPessoas;
-        this.idTiposEventos = idTiposEventos;
-        this.idContatos = idContatos;
-        this.idEmails = idEmails;
-        this.idSites = idSites;
+        this.endereco = endereco;
+        this.pessoa = pessoa;
+        this.empresa = empresa;
+        this.tipoEvento = tipoEvento;
+        this.inativo = inativo;
+    }
+
+    public int getInativo() {
+        return inativo;
+    }
+
+    public void setInativo(int inativo) {
         this.inativo = inativo;
     }
 
@@ -107,69 +106,38 @@ public class Evento {
         this.dataPromover = dataPromover;
     }
 
-    public int getIdEndereco() {
-        return idEndereco;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void setIdEndereco(int idEndereco) {
-        this.idEndereco = idEndereco;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
-    public int getIdCondicoesValores() {
-        return idCondicoesValores;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setIdCondicoesValores(int idCondicoesValores) {
-        this.idCondicoesValores = idCondicoesValores;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
-    public int getIdPessoas() {
-        return idPessoas;
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setIdPessoas(int idPessoas) {
-        this.idPessoas = idPessoas;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
-    public int getIdTiposEventos() {
-        return idTiposEventos;
+    public TipoEvento getTipoEvento() {
+        return tipoEvento;
     }
 
-    public void setIdTiposEventos(int idTiposEventos) {
-        this.idTiposEventos = idTiposEventos;
+    public void setTipoEvento(TipoEvento tipoEvento) {
+        this.tipoEvento = tipoEvento;
     }
 
-    public int getIdContatos() {
-        return idContatos;
-    }
-
-    public void setIdContatos(int idContatos) {
-        this.idContatos = idContatos;
-    }
-
-    public int getIdEmails() {
-        return idEmails;
-    }
-
-    public void setIdEmails(int idEmails) {
-        this.idEmails = idEmails;
-    }
-
-    public int getIdSites() {
-        return idSites;
-    }
-
-    public void setIdSites(int idSites) {
-        this.idSites = idSites;
-    }
-
-    public int getInativo() {
-        return inativo;
-    }
-
-    public void setInativo(int inativo) {
-        this.inativo = inativo;
-    }
     
     
 }

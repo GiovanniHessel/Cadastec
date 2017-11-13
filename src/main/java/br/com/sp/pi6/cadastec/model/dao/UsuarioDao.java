@@ -26,7 +26,7 @@ public class UsuarioDao {
     
     public boolean insert(Usuario usuario){
         String sql = "insert into Usuarios"
-                + "(usuario, chave, inativo, acesso)"
+                + "(usuario, chave, inativo, tipo)"
                 + " values (?,?,?,?,?)";
         connection.open();
         try {
@@ -38,7 +38,7 @@ public class UsuarioDao {
             stmt.setString(1, usuario.getUsuario());
             stmt.setString(2, usuario.getChave());
             stmt.setInt(4, usuario.getInativo());
-            stmt.setString(4, usuario.getAcesso());
+            stmt.setInt(4, usuario.getTipo());
 
             // executa
             stmt.execute();
@@ -51,11 +51,42 @@ public class UsuarioDao {
         connection.close();
         return true;
     }
-    
+        public Usuario getUsuario(int id) {
+        this.connection.open();
+        try {
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, usuario, chave, tipo, inativo from Usuarios where id = ?");
+            stmt.setInt(1, id);
+
+            
+            ResultSet rs = stmt.executeQuery();
+            Usuario usuario = new Usuario();
+            // criando o objeto Contato
+            if (rs.next()){
+                
+
+                usuario.setId(rs.getInt("id"));
+                usuario.setUsuario(rs.getString("usuario"));
+                usuario.setChave(rs.getString("chave"));
+                usuario.setTipo(rs.getInt("tipo"));
+                usuario.setInativo(rs.getInt("inativo"));
+                // adicionando o objeto à lista
+            }
+                
+            rs.close();
+            stmt.close();
+            connection.close();
+            return usuario;
+
+        } catch (SQLException e) {
+            connection.close();
+            throw new RuntimeException(e);
+        }
+    }
+        
     public Usuario getUsuario(Usuario usuario) {
         this.connection.open();
         try {
-            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select * from Usuarios where usuario = ? and chave = ?");
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, usuario, chave, tipo, inativo from Usuarios where usuario = ? and chave = ?");
             stmt.setString(1, usuario.getUsuario());
             stmt.setString(2, usuario.getChave());
             
@@ -68,7 +99,7 @@ public class UsuarioDao {
                 usuario.setId(rs.getInt("id"));
                 usuario.setUsuario(rs.getString("usuario"));
                 usuario.setChave(rs.getString("chave"));
-                usuario.setAcesso(rs.getString("acesso"));
+                usuario.setTipo(rs.getInt("tipo"));
                 usuario.setInativo(rs.getInt("inativo"));
                 // adicionando o objeto à lista
             }

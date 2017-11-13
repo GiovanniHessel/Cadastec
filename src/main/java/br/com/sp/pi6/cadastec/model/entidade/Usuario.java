@@ -14,22 +14,22 @@ public class Usuario {
     private String usuario;
     private String chave;
     private int inativo;
-    private String acesso;
+    private int tipo;
 
     public Usuario() {
         this.id = 0;
         this.usuario = "";
         this.chave = "";
         this.inativo = 0;
-        this.acesso = "";
+        this.tipo = 0;
     }
 
-    public Usuario(int id, String usuario, String chave, int inativo, String acesso) {
+    public Usuario(int id, String usuario, String chave, int inativo, int tipo) {
         this.id = id;
         this.usuario = usuario;
         this.chave = chave;
         this.inativo = inativo;
-        this.acesso = acesso;
+        this.tipo = tipo;
     }
 
     public int getId() {
@@ -64,12 +64,12 @@ public class Usuario {
         this.inativo = inativo;
     }
 
-    public String getAcesso() {
-        return acesso;
+    public int getTipo() {
+        return tipo;
     }
 
-    public void setAcesso(String acesso) {
-        this.acesso = acesso;
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
     }
 
     

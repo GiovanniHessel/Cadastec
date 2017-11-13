@@ -28,7 +28,7 @@ public class ContatoDao {
 
     public boolean insert(Contato contato) {
         String sql = "insert into Inscricoes"
-                + "(ddd, numero, tipoNumero, email, site, idEventos, idPessoas, inativo)"
+                + "(ddd, numero, tipoNumero, email, site, idEventos, inativo)"
                 + " values (?,?,?,?)";
         connection.open();
         try {
@@ -42,9 +42,8 @@ public class ContatoDao {
             stmt.setString(3, contato.getTipoNumero());
             stmt.setString(4, contato.getEmail());
             stmt.setString(5, contato.getSite());
-            stmt.setInt(6, contato.getIdEventos());
-            stmt.setInt(7, contato.getIdPessoas());
-            stmt.setInt(8, contato.getInativo());
+            stmt.setInt(6, contato.getEvento().getId());
+            stmt.setInt(7, contato.getInativo());
             // executa
             stmt.execute();
             stmt.close();
@@ -60,9 +59,10 @@ public class ContatoDao {
     public Contato getContato(Contato contato) {
         this.connection.open();
         try {
-            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, ddd, numero, tipoNumero, email, site, idEventos, idPessoas, inativo from Inscricoes where id = ?");
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, ddd, numero, tipoNumero, email, site, idEventos, inativo from Inscricoes where id = ?");
             stmt.setInt(1, contato.getId());
-
+            
+            //EventoDao eventoDao = new EventoDao();
             ResultSet rs = stmt.executeQuery();
             contato = new Contato();
             // criando o objeto Contato
@@ -73,8 +73,8 @@ public class ContatoDao {
                 contato.setTipoNumero(rs.getString("tipoNumero"));
                 contato.setEmail(rs.getString("email"));
                 contato.setSite(rs.getString("site"));
-                contato.setIdEventos(rs.getInt("idEventos"));
-                contato.setIdPessoas(rs.getInt("idPessoas"));
+                //Evento evento = eventoDao.getEvento(rs.getInt("idEventos"));
+                //contato.setEventos(evento);
                 contato.setInativo(rs.getInt("inativo"));
                 // adicionando o objeto à lista
             }
@@ -92,8 +92,9 @@ public class ContatoDao {
     public List<Contato> getContatos() {
         this.connection.open();
         try {
-            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, ddd, numero, tipoNumero, email, site, idEventos, idPessoas, inativo");
-
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, ddd, numero, tipoNumero, email, site, idEventos, inativo");
+                
+            //EventoDao eventoDao = new EventoDao();
             ResultSet rs = stmt.executeQuery();
             List<Contato> contatos = new ArrayList();
             // criando o objeto Contato
@@ -106,8 +107,8 @@ public class ContatoDao {
                 contato.setTipoNumero(rs.getString("tipoNumero"));
                 contato.setEmail(rs.getString("email"));
                 contato.setSite(rs.getString("site"));
-                contato.setIdEventos(rs.getInt("idEventos"));
-                contato.setIdPessoas(rs.getInt("idPessoas"));
+                //Evento evento = eventoDao.getEvento(rs.getInt("idEventos"));
+                //contato.setEventos(evento);
                 contato.setInativo(rs.getInt("inativo"));
                 // adicionando o objeto à lista
                 contatos.add(contato);

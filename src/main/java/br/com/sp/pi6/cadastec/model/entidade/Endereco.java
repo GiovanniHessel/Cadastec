@@ -15,32 +15,32 @@ public class Endereco {
     private String numero;
     private String complemento;
     private String bairro;
-    private int idCidades;
-    private int idEstados;
-    private int idPais;
+    private Cidade cidade;
+    private Estado estado;
+    private Pais pais;
     private int inativo;
-
+    
     public Endereco() {
         this.id = 0;
         this.logradouro = "";
         this.numero = "";
         this.complemento = "";
         this.bairro = "";
-        this.idCidades = 0;
-        this.idEstados = 0;
-        this.idPais = 0;
+        this.cidade = new Cidade();
+        this.estado = new Estado();
+        this.pais = new Pais();
         this.inativo = 0;
     }
 
-    public Endereco(int id, String logradouro, String numero, String complemento, String bairro, int idCidades, int idEstados, int idPais, int inativo) {
+    public Endereco(int id, String logradouro, String numero, String complemento, String bairro, Cidade cidade, Estado estado, Pais pais, int inativo) {
         this.id = id;
         this.logradouro = logradouro;
         this.numero = numero;
         this.complemento = complemento;
         this.bairro = bairro;
-        this.idCidades = idCidades;
-        this.idEstados = idEstados;
-        this.idPais = idPais;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.pais = pais;
         this.inativo = inativo;
     }
 
@@ -84,28 +84,28 @@ public class Endereco {
         this.bairro = bairro;
     }
 
-    public int getIdCidades() {
-        return idCidades;
+    public Cidade getCidade() {
+        return cidade;
     }
 
-    public void setIdCidades(int idCidades) {
-        this.idCidades = idCidades;
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
     }
 
-    public int getIdEstados() {
-        return idEstados;
+    public Estado getEstado() {
+        return estado;
     }
 
-    public void setIdEstados(int idEstados) {
-        this.idEstados = idEstados;
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
-    public int getIdPais() {
-        return idPais;
+    public Pais getPais() {
+        return pais;
     }
 
-    public void setIdPais(int idPais) {
-        this.idPais = idPais;
+    public void setPais(Pais pais) {
+        this.pais = pais;
     }
 
     public int getInativo() {
@@ -115,6 +115,7 @@ public class Endereco {
     public void setInativo(int inativo) {
         this.inativo = inativo;
     }
+    
     
     
     

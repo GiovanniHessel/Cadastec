@@ -13,25 +13,25 @@ public class Cidade {
     private int id;
     private String cidade;
     private String sigla;    
-    private int idEstados;
-    private int idPais;
+    private Estado estado;
+    private Pais pais;
     private int inativo;
 
     public Cidade() {
         this.id = 0;
         this.cidade = "";
         this.sigla = "";
-        this.idEstados = 0;
-        this.idPais = 0;
+        this.estado = new Estado();
+        this.pais = new Pais();
         this.inativo = 0;
     }
 
-    public Cidade(int id, String cidade, String sigla, int idEstados, int idPais, int inativo) {
+    public Cidade(int id, String cidade, String sigla, Estado estado, Pais pais, int inativo) {
         this.id = id;
         this.cidade = cidade;
         this.sigla = sigla;
-        this.idEstados = idEstados;
-        this.idPais = idPais;
+        this.estado = estado;
+        this.pais = pais;
         this.inativo = inativo;
     }
 
@@ -59,20 +59,20 @@ public class Cidade {
         this.sigla = sigla;
     }
 
-    public int getIdEstados() {
-        return idEstados;
+    public Estado getEstados() {
+        return estado;
     }
 
-    public void setIdEstados(int idEstados) {
-        this.idEstados = idEstados;
+    public void setEstados(Estado estado) {
+        this.estado = estado;
     }
 
-    public int getIdPais() {
-        return idPais;
+    public Pais getPais() {
+        return pais;
     }
 
-    public void setIdPais(int idPais) {
-        this.idPais = idPais;
+    public void setPais(Pais pais) {
+        this.pais = pais;
     }
 
     public int getInativo() {

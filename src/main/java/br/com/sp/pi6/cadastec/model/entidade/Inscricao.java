@@ -11,24 +11,24 @@ package br.com.sp.pi6.cadastec.model.entidade;
  */
 public class Inscricao {
     private int id;
-    private int idPessoas;
-    private int idStatusInteresses;
-    private int idEventos;
+    private Pessoa pessoa;
+    private Empresa empresa;
+    private Evento evento;
     private int inativo;
 
     public Inscricao() {
         this.id = 0;
-        this.idPessoas = 0;
-        this.idStatusInteresses = 0;
-        this.idEventos = 0;
+        this.pessoa = new Pessoa();
+        this.empresa = new Empresa();
+        this.evento = new Evento();
         this.inativo = 0;
     }
 
-    public Inscricao(int id, int idPessoas, int idStatusInteresses, int idEventos, int inativo) {
+    public Inscricao(int id, Pessoa pessoa, Empresa empresa, Evento evento, int inativo) {
         this.id = id;
-        this.idPessoas = idPessoas;
-        this.idStatusInteresses = idStatusInteresses;
-        this.idEventos = idEventos;
+        this.pessoa = pessoa;
+        this.empresa = empresa;
+        this.evento = evento;
         this.inativo = inativo;
     }
 
@@ -40,28 +40,28 @@ public class Inscricao {
         this.id = id;
     }
 
-    public int getIdPessoas() {
-        return idPessoas;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setIdPessoas(int idPessoas) {
-        this.idPessoas = idPessoas;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
-    public int getIdStatusInteresses() {
-        return idStatusInteresses;
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setIdStatusInteresses(int idStatusInteresses) {
-        this.idStatusInteresses = idStatusInteresses;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
-    public int getIdEventos() {
-        return idEventos;
+    public Evento getEvento() {
+        return evento;
     }
 
-    public void setIdEventos(int idEventos) {
-        this.idEventos = idEventos;
+    public void setEvento(Evento evento) {
+        this.evento = evento;
     }
 
     public int getInativo() {
@@ -71,5 +71,7 @@ public class Inscricao {
     public void setInativo(int inativo) {
         this.inativo = inativo;
     }
+
+    
     
 }
