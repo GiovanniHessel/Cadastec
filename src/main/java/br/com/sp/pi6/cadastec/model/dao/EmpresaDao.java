@@ -41,8 +41,8 @@ public class EmpresaDao {
             stmt.setString(2, empresa.getRazaoSocial());
             stmt.setString(3, empresa.getCNPJ());
             //stmt.setString(4, empresa.getDataDeCriacao());
-            stmt.setInt(5, empresa.getUsuario().getId());
-            stmt.setInt(6, empresa.getInativo());
+            stmt.setInt(4, empresa.getUsuario().getId());
+            stmt.setInt(5, empresa.getInativo());
             // executa
             stmt.execute();
             stmt.close();
