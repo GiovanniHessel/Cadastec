@@ -13,8 +13,10 @@ public class Usuario {
     private int id;
     private String usuario;
     private String chave;
-    private int inativo;
     private int tipo;
+    private String email;
+    private int inativo;
+    
 
     public Usuario() {
         this.id = 0;
@@ -24,12 +26,13 @@ public class Usuario {
         this.tipo = 0;
     }
 
-    public Usuario(int id, String usuario, String chave, int inativo, int tipo) {
+    public Usuario(int id, String usuario, String chave, int tipo, String email, int inativo) {
         this.id = id;
         this.usuario = usuario;
         this.chave = chave;
-        this.inativo = inativo;
         this.tipo = tipo;
+        this.email = email;
+        this.inativo = inativo;
     }
 
     public int getId() {
@@ -56,14 +59,6 @@ public class Usuario {
         this.chave = chave;
     }
 
-    public int getInativo() {
-        return inativo;
-    }
-
-    public void setInativo(int inativo) {
-        this.inativo = inativo;
-    }
-
     public int getTipo() {
         return tipo;
     }
@@ -72,7 +67,21 @@ public class Usuario {
         this.tipo = tipo;
     }
 
-    
-    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getInativo() {
+        return inativo;
+    }
+
+    public void setInativo(int inativo) {
+        this.inativo = inativo;
+    }
+
     
 }

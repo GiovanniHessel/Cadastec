@@ -12,22 +12,19 @@ package br.com.sp.pi6.cadastec.model.entidade;
 public class Inscricao {
     private int id;
     private Pessoa pessoa;
-    private Empresa empresa;
     private Evento evento;
     private int inativo;
 
     public Inscricao() {
         this.id = 0;
         this.pessoa = new Pessoa();
-        this.empresa = new Empresa();
         this.evento = new Evento();
         this.inativo = 0;
     }
 
-    public Inscricao(int id, Pessoa pessoa, Empresa empresa, Evento evento, int inativo) {
+    public Inscricao(int id, Pessoa pessoa, Evento evento, int inativo) {
         this.id = id;
         this.pessoa = pessoa;
-        this.empresa = empresa;
         this.evento = evento;
         this.inativo = inativo;
     }
@@ -46,14 +43,6 @@ public class Inscricao {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
-    }
-
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
     }
 
     public Evento getEvento() {

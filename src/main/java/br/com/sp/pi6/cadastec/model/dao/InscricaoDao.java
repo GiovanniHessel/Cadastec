@@ -30,7 +30,7 @@ public class InscricaoDao {
     
     public boolean insert(Inscricao inscricao){
         String sql = "insert into Inscricoes"
-                + "(idPessoas, idEmpresas, idEventos, inativo)"
+                + "(idPessoas, idEventos, inativo)"
                 + " values (?,?,?,?)";
         connection.open();
         try {
@@ -40,9 +40,8 @@ public class InscricaoDao {
 
             // seta os valores
             stmt.setInt(1, inscricao.getPessoa().getId());
-            stmt.setInt(2, inscricao.getEmpresa().getId());
-            stmt.setInt(3, inscricao.getEvento().getId());
-            stmt.setInt(4, inscricao.getInativo());
+            stmt.setInt(2, inscricao.getEvento().getId());
+            stmt.setInt(3, inscricao.getInativo());
             // executa
             stmt.execute();
             stmt.close();
@@ -58,11 +57,10 @@ public class InscricaoDao {
     public Inscricao getInscricao(Inscricao inscricao) {
         this.connection.open();
         try {
-            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, idPessoas, idEmpresas, idEventos, inativo from Inscricoes where id = ?");
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, idPessoas, idEventos, inativo from Inscricoes where id = ?");
             stmt.setInt(1, inscricao.getId());
             PessoaDao pessoaDao = new PessoaDao();
             EventoDao eventoDao = new EventoDao();
-            EmpresaDao empresaDao = new EmpresaDao();
             
             ResultSet rs = stmt.executeQuery();
             inscricao = new Inscricao();
@@ -72,8 +70,6 @@ public class InscricaoDao {
                 inscricao.setId(rs.getInt("id"));
                 Pessoa pessoa = pessoaDao.getPessoa(rs.getInt("idPessoas"));
                 inscricao.setPessoa(pessoa);
-                Empresa empresa = empresaDao.getEmpresa(rs.getInt("idEmpresas"));
-                inscricao.setEmpresa(empresa);
                 Evento evento = eventoDao.getEvento(rs.getInt("idEventos"));
                 inscricao.setEvento(evento);
                 inscricao.setInativo(rs.getInt("inativo"));
@@ -93,10 +89,9 @@ public class InscricaoDao {
     public List<Inscricao> getInscricoes() {
         this.connection.open();
         try {
-            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, idPessoas, idEmpresas, idEventos, inativo from Inscricoes");
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, idPessoas, idEventos, inativo from Inscricoes");
             PessoaDao pessoaDao = new PessoaDao();
             EventoDao eventoDao = new EventoDao();
-            EmpresaDao empresaDao = new EmpresaDao();
             
             ResultSet rs = stmt.executeQuery();
             List<Inscricao> inscricoes = new ArrayList();
@@ -107,8 +102,6 @@ public class InscricaoDao {
                 inscricao.setId(rs.getInt("id"));
                 Pessoa pessoa = pessoaDao.getPessoa(rs.getInt("idPessoas"));
                 inscricao.setPessoa(pessoa);
-                Empresa empresa = empresaDao.getEmpresa(rs.getInt("idEmpresas"));
-                inscricao.setEmpresa(empresa);
                 Evento evento = eventoDao.getEvento(rs.getInt("idEventos"));
                 inscricao.setEvento(evento);
                 inscricao.setInativo(rs.getInt("inativo"));

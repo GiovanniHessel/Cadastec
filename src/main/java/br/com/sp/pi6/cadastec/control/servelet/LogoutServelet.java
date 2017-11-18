@@ -19,23 +19,15 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author GIOVANNI
  */
-@WebServlet(name = "Login", urlPatterns = {"/Login"})
-public class LoginServelet extends HttpServlet {
-
-     protected void service(HttpServletRequest request, HttpServletResponse response)
+@WebServlet(name = "Logout", urlPatterns = {"/Logout"})
+public class LogoutServelet extends HttpServlet {
+         protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        
+       
         Usuario usuario = new Usuario();
-        usuario.setUsuario(request.getParameter("usuario"));
-        usuario.setChave(request.getParameter("chave"));
-        
-        Login login = new Login();
-        request.setAttribute("login", login.autenticar(usuario));
-        
-        usuario = login.getUsuario();
-        request.getSession().setAttribute("usuario", usuario );
-        
+        request.getSession().setAttribute("usuario", usuario );        
+            
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }

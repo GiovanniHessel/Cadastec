@@ -15,7 +15,6 @@ public class Evento {
     private String descricao;
     private String dataHoraInicial;
     private String dataHoraFinal;
-    private String dataPromover;
     private Endereco endereco;
     private Pessoa pessoa;
     private Empresa empresa;
@@ -28,7 +27,6 @@ public class Evento {
         this.descricao = "";
         this.dataHoraInicial = "";
         this.dataHoraFinal = "";
-        this.dataPromover = "";
         this.endereco = new Endereco();
         this.pessoa = new Pessoa();
         this.empresa = new Empresa();
@@ -36,13 +34,12 @@ public class Evento {
         this.inativo = inativo;
     }
 
-    public Evento(int id, String titulo, String descricao, String dataHoraInicial, String dataHoraFinal, String dataPromover, Endereco endereco, Pessoa pessoa, Empresa empresa, TipoEvento tipoEvento, int inativo) {
+    public Evento(int id, String titulo, String descricao, String dataHoraInicial, String dataHoraFinal, Endereco endereco, Pessoa pessoa, Empresa empresa, TipoEvento tipoEvento, int inativo) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
         this.dataHoraInicial = dataHoraInicial;
         this.dataHoraFinal = dataHoraFinal;
-        this.dataPromover = dataPromover;
         this.endereco = endereco;
         this.pessoa = pessoa;
         this.empresa = empresa;
@@ -96,14 +93,6 @@ public class Evento {
 
     public void setDataHoraFinal(String dataHoraFinal) {
         this.dataHoraFinal = dataHoraFinal;
-    }
-
-    public String getDataPromover() {
-        return dataPromover;
-    }
-
-    public void setDataPromover(String dataPromover) {
-        this.dataPromover = dataPromover;
     }
 
     public Endereco getEndereco() {

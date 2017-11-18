@@ -83,6 +83,7 @@ id int primary key identity
 ,usuario varchar(50)
 ,chave varchar(512)
 ,tipo int 
+,email varchar(100)
 ,inativo int
 )
 go
@@ -123,7 +124,6 @@ id int primary key identity
 ,descricao varchar(max)
 ,dataHoraInicial datetime
 ,dataHoraFinal datetime
-,dataPromover datetime
 ,idEnderecos int
 ,idPessoas int 
 ,idEmpresas int 
@@ -143,11 +143,9 @@ id int primary key identity
 ,numero char(9)
 ,email varchar(100)
 ,site varchar(100)
-,idPessoas int
 ,idEventos int
 ,inativo int
 ,CONSTRAINT FK_Contatos_Eventos				FOREIGN KEY(idEventos)				REFERENCES Eventos(id)
-,CONSTRAINT FK_Contatos_Pessoas				FOREIGN KEY(idPessoas)				REFERENCES Pessoas(id)
 )
 go
 
@@ -155,11 +153,9 @@ create table Inscricoes
 (
 id int primary key identity
 ,idPessoas int
-,idEmpresas int
 ,idEventos int
 ,inativo int
 ,CONSTRAINT FK_Inscricoes_Pessoas				FOREIGN KEY(idPessoas)				REFERENCES Pessoas(id)
-,CONSTRAINT FK_Inscricoes_Empresas				FOREIGN KEY(idEmpresas)				REFERENCES Empresas(id)
 ,CONSTRAINT FK_Inscricoes_Eventos				FOREIGN KEY(idEventos)				REFERENCES Eventos(id)
 )
 go

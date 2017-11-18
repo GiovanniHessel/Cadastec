@@ -15,7 +15,7 @@
         <title>PI</title>
     </head>
     <body>
-         <c:choose>
+        <c:choose>
             <c:when test="${login}">
                 <h1>Login efetuado com sucesso</h1>
             </c:when>
@@ -23,6 +23,13 @@
                 <h1>Usuario ou senha incorretos</h1>
             </c:when>
         </c:choose>
-      
+        <c:choose>
+            <c:when test="${afonso}">
+                <h1>Login efetuado com sucesso</h1>
+            </c:when>
+            <c:when test="${! afonso}">
+                <h1>Usuario ou senha incorretos</h1>
+            </c:when>
+        </c:choose>
     </body>
 </html>

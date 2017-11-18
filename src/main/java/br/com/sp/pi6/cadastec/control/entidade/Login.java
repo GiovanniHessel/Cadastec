@@ -13,14 +13,24 @@ import br.com.sp.pi6.cadastec.model.entidade.Usuario;
  * @author GIOVANNI
  */
 public class Login {
+    private Usuario usuario;
+
+    public Login() {
+        this.usuario = new Usuario();
+    }
+   
     public boolean autenticar(Usuario usuario){
         UsuarioDao usuarioDao = new UsuarioDao();
-        Usuario usuarioAtenticar = usuarioDao.getUsuario(usuario);
+        this.usuario = usuarioDao.getUsuario(usuario);
         
-        if (usuario.getUsuario().equals(usuarioAtenticar.getUsuario()) && usuario.getChave().equals(usuarioAtenticar.getChave())){
+        if (this.usuario.getId() != 0){
             return true;
         }else{
             return false;
         }
     } 
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
 }

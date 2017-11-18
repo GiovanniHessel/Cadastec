@@ -29,7 +29,7 @@ public class EmpresaDao {
     public boolean insert(Empresa empresa){
         String sql = "insert into Empresas"
                 + "(nomeFantasia, razaoSocial, CNPJ, dataDeCriacao, idUsuarios, inativo)"
-                + " values (?,?,?,?,?,?)";
+                + " values (?,?,?,'"+empresa.getDataDeCriacao()+"',?,?)";
         connection.open();
         try {
             // prepared statement para inserção
@@ -40,10 +40,9 @@ public class EmpresaDao {
             stmt.setString(1, empresa.getNomeFantasia());
             stmt.setString(2, empresa.getRazaoSocial());
             stmt.setString(3, empresa.getCNPJ());
-            stmt.setString(4, empresa.getDataDeCriacao());
+            //stmt.setString(4, empresa.getDataDeCriacao());
             stmt.setInt(5, empresa.getUsuario().getId());
             stmt.setInt(6, empresa.getInativo());
-            
             // executa
             stmt.execute();
             stmt.close();

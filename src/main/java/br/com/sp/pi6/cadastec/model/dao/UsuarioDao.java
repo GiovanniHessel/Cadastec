@@ -24,9 +24,13 @@ public class UsuarioDao {
         this.connection = Cadastec.connection;
     }
     
-    public boolean insert(Usuario usuario){
+    public Usuario insert(Usuario usuario){
+        
+        usuario.setId(0);
+        
         String sql = "insert into Usuarios"
-                + "(usuario, chave, inativo, tipo)"
+                + "(usuario, chave, inativo, tipo, email)"
+                + "Output Inserted.id as id"
                 + " values (?,?,?,?,?)";
         connection.open();
         try {
@@ -37,24 +41,28 @@ public class UsuarioDao {
             // seta os valores
             stmt.setString(1, usuario.getUsuario());
             stmt.setString(2, usuario.getChave());
-            stmt.setInt(4, usuario.getInativo());
+            stmt.setInt(3, usuario.getInativo());
             stmt.setInt(4, usuario.getTipo());
-
+            stmt.setString(5, usuario.getEmail());
             // executa
-            stmt.execute();
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()){
+                usuario.setId(rs.getInt("id"));
+            }
+            rs.close();
             stmt.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             connection.close();
-            return false;
+            return usuario;
         }
         connection.close();
-        return true;
+        return usuario;
     }
         public Usuario getUsuario(int id) {
         this.connection.open();
         try {
-            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, usuario, chave, tipo, inativo from Usuarios where id = ?");
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, usuario, chave, tipo,  email, inativo from Usuarios where id = ?");
             stmt.setInt(1, id);
 
             
@@ -69,6 +77,7 @@ public class UsuarioDao {
                 usuario.setChave(rs.getString("chave"));
                 usuario.setTipo(rs.getInt("tipo"));
                 usuario.setInativo(rs.getInt("inativo"));
+                
                 // adicionando o objeto à lista
             }
                 
@@ -86,7 +95,7 @@ public class UsuarioDao {
     public Usuario getUsuario(Usuario usuario) {
         this.connection.open();
         try {
-            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, usuario, chave, tipo, inativo from Usuarios where usuario = ? and chave = ?");
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, usuario, chave, tipo, email, inativo from Usuarios where usuario = ? and chave = ?");
             stmt.setString(1, usuario.getUsuario());
             stmt.setString(2, usuario.getChave());
             
@@ -101,6 +110,7 @@ public class UsuarioDao {
                 usuario.setChave(rs.getString("chave"));
                 usuario.setTipo(rs.getInt("tipo"));
                 usuario.setInativo(rs.getInt("inativo"));
+                usuario.setEmail(rs.getString("email"));
                 // adicionando o objeto à lista
             }
                 

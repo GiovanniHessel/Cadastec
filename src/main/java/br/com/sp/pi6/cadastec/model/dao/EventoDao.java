@@ -31,7 +31,7 @@ public class EventoDao {
     
     public boolean insert(Evento evento){
         String sql = "insert into Eventos"
-                + "(titulo, descricao, dataHoraInicial, dataHoraFinal, dataPromover, idEnderecos, idPessoas, idEmpresas, idTiposEventos, inativo)"
+                + "(titulo, descricao, dataHoraInicial, dataHoraFinal, idEnderecos, idPessoas, idEmpresas, idTiposEventos, inativo)"
                 + " values (?,?,?,?,?,?,?,?)";
         connection.open();
         try {
@@ -44,11 +44,10 @@ public class EventoDao {
             stmt.setString(2, evento.getDescricao());
             stmt.setString(3, evento.getDataHoraInicial());
             stmt.setString(4, evento.getDataHoraFinal());
-            stmt.setString(5, evento.getDataPromover());
-            stmt.setInt(6, evento.getPessoa().getId());
-            stmt.setInt(7, evento.getEmpresa().getId());
-            stmt.setInt(8, evento.getTipoEvento().getId());
-            stmt.setInt(9, evento.getInativo());
+            stmt.setInt(5, evento.getPessoa().getId());
+            stmt.setInt(6, evento.getEmpresa().getId());
+            stmt.setInt(7, evento.getTipoEvento().getId());
+            stmt.setInt(8, evento.getInativo());
  
             // executa
             stmt.execute();
@@ -65,7 +64,7 @@ public class EventoDao {
     public Evento getEvento(int id) {
         this.connection.open();
         try {
-            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, titulo, descricao, dataHoraInicial, dataHoraFinal, dataPromover, idEnderecos, idPessoas, idEmpresas, idTiposEventos, inativo from Eventos where id = ?");
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, titulo, descricao, dataHoraInicial, dataHoraFinal, idEnderecos, idPessoas, idEmpresas, idTiposEventos, inativo from Eventos where id = ?");
             stmt.setInt(1, id);
             
             EnderecoDao enderecoDao = new EnderecoDao();
@@ -82,7 +81,6 @@ public class EventoDao {
                 evento.setDescricao(rs.getString("descricao"));
                 evento.setDataHoraInicial(rs.getString("dataHoraInicial"));
                 evento.setDataHoraFinal(rs.getString("dataHoraFinal"));
-                evento.setDataPromover(rs.getString("dataPromover"));
                 Endereco endereco = enderecoDao.getEndereco(rs.getInt("idEnderecos"));
                 evento.setEndereco(endereco);
                 Pessoa pessoa = pessoaDao.getPessoa(rs.getInt("idPessoas"));
@@ -109,7 +107,7 @@ public class EventoDao {
     public Evento getEvento(Evento evento) {
         this.connection.open();
         try {
-            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, titulo, descricao, dataHoraInicial, dataHoraFinal, dataPromover, idEnderecos, idPessoas, idEmpresas, idTiposEventos, inativo from Eventos where id = ?");
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, titulo, descricao, dataHoraInicial, dataHoraFinal, idEnderecos, idPessoas, idEmpresas, idTiposEventos, inativo from Eventos where id = ?");
             stmt.setInt(1, evento.getId());
             
             EnderecoDao enderecoDao = new EnderecoDao();
@@ -126,7 +124,6 @@ public class EventoDao {
                 evento.setDescricao(rs.getString("descricao"));
                 evento.setDataHoraInicial(rs.getString("dataHoraInicial"));
                 evento.setDataHoraFinal(rs.getString("dataHoraFinal"));
-                evento.setDataPromover(rs.getString("dataPromover"));
                 Endereco endereco = enderecoDao.getEndereco(rs.getInt("idEnderecos"));
                 evento.setEndereco(endereco);
                 Pessoa pessoa = pessoaDao.getPessoa(rs.getInt("idPessoas"));
@@ -153,7 +150,7 @@ public class EventoDao {
     public List<Evento> getEventos() {
         this.connection.open();
         try {
-            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, titulo, descricao, dataHoraInicial, dataHoraFinal, dataPromover, idEnderecos, idPessoas, idEmpresas, idTiposEventos, inativo from Eventos");
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, titulo, descricao, dataHoraInicial, dataHoraFinal, idEnderecos, idPessoas, idEmpresas, idTiposEventos, inativo from Eventos");
             EnderecoDao enderecoDao = new EnderecoDao();
             PessoaDao pessoaDao = new PessoaDao();
             EmpresaDao empresaDao = new EmpresaDao();
@@ -169,7 +166,47 @@ public class EventoDao {
                 evento.setDescricao(rs.getString("descricao"));
                 evento.setDataHoraInicial(rs.getString("dataHoraInicial"));
                 evento.setDataHoraFinal(rs.getString("dataHoraFinal"));
-                evento.setDataPromover(rs.getString("dataPromover"));
+                Endereco endereco = enderecoDao.getEndereco(rs.getInt("idEnderecos"));
+                evento.setEndereco(endereco);
+                Pessoa pessoa = pessoaDao.getPessoa(rs.getInt("idPessoas"));
+                evento.setPessoa(pessoa);
+                Empresa empresa = empresaDao.getEmpresa(rs.getInt("idEmpresas"));
+                evento.setEmpresa(empresa);
+                TipoEvento tipoEvento = tipoEventoDao.getTipoEvento(rs.getInt("idTiposEventos"));
+                evento.setTipoEvento(tipoEvento);
+                evento.setInativo(rs.getInt("inativo"));
+                // adicionando o objeto à lista
+                eventos.add(evento);
+            }
+            rs.close();
+            stmt.close();
+            connection.close();
+            return eventos;
+        } catch (SQLException e) {
+            connection.close();
+            throw new RuntimeException(e);
+        }
+    }
+    public List<Evento> getEventos(String DataPeriodo1, String DataPeriodo2 ) {
+        this.connection.open();
+        try {
+            PreparedStatement stmt = this.connection.getConnection().prepareStatement("select id, titulo, descricao, dataHoraInicial, dataHoraFinal, idEnderecos, idPessoas, idEmpresas, idTiposEventos, inativo from Eventos" 
+                                                                                        +"where dataHoraInicial >= '" + DataPeriodo1 + "' and dataHoraInicial <= '" + DataPeriodo2 + "'");
+            EnderecoDao enderecoDao = new EnderecoDao();
+            PessoaDao pessoaDao = new PessoaDao();
+            EmpresaDao empresaDao = new EmpresaDao();
+            TipoEventoDao tipoEventoDao = new TipoEventoDao();
+            
+            ResultSet rs = stmt.executeQuery();
+            List<Evento> eventos = new ArrayList();
+            // criando o objeto Contato
+            while (rs.next()){
+                Evento evento = new Evento();
+                evento.setId(rs.getInt("id"));
+                evento.setTitulo(rs.getString("titulo"));
+                evento.setDescricao(rs.getString("descricao"));
+                evento.setDataHoraInicial(rs.getString("dataHoraInicial"));
+                evento.setDataHoraFinal(rs.getString("dataHoraFinal"));
                 Endereco endereco = enderecoDao.getEndereco(rs.getInt("idEnderecos"));
                 evento.setEndereco(endereco);
                 Pessoa pessoa = pessoaDao.getPessoa(rs.getInt("idPessoas"));

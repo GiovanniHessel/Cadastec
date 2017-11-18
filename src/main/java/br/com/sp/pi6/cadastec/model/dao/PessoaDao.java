@@ -29,7 +29,7 @@ public class PessoaDao {
     public boolean insert(Pessoa pessoa){
         String sql = "insert into Pessoas"
                 + "(nome, sobrenome, CPF, dataDeNascimento, idUsuarios, inativo)"
-                + " values (?,?,?,?,?,?)";
+                + " values (?,?,?,'"+pessoa.getDataDeNascimento()+"',?,?)";
         connection.open();
         try {
             // prepared statement para inserção
@@ -40,9 +40,9 @@ public class PessoaDao {
             stmt.setString(1, pessoa.getNome());
             stmt.setString(2, pessoa.getSobrenome());
             stmt.setString(3, pessoa.getCPF());
-            stmt.setString(4, pessoa.getDataDeNascimento());
-            stmt.setInt(5, pessoa.getUsuario().getId());
-            stmt.setInt(6, pessoa.getInativo());
+            //stmt.setString(4, pessoa.getDataDeNascimento());
+            stmt.setInt(4, pessoa.getUsuario().getId());
+            stmt.setInt(5, pessoa.getInativo());
             
             // executa
             stmt.execute();
